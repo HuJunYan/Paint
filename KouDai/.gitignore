@@ -1,0 +1,15 @@
+/build
+/local.properties
+.idea
+.gradle
+*.iml
+/alertview/build/
+/alertview/.gitignore
+/app/build/
+/app/.gitignore
+*.pro
+/PullToRefreshLibrary/build/
+/MPChartLib/build/
+/pickerview/.gitignore
+/pickerview/build/
+/circleimageview/build/

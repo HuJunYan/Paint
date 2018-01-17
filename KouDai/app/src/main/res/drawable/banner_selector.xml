@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <bitmap android:gravity="center" android:src="@mipmap/ic_circle_ckeck" />
+    </item>
+    <item android:state_enabled="false">
+        <bitmap android:gravity="center" android:src="@mipmap/ic_circle" />
+    </item>
+</selector>

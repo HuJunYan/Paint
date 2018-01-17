@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="orange_color">#FFFE802F</color>
+    <color name="text_gray">#FF88837A</color>
+    <color name="menu_item">#FFF4F4F4</color>
+    <color name="reg_tint">#FFC7C7CD</color>
+    <color name="transparent">#00009000</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="green_handover_title">#FF008119</color>
+    <color name="orange_handover_title">#FFFF9A1E</color>
+    <color name="subscribe_item_disabled_bg">#FFEFEFEF</color>
+    <color name="dialog_bg_color">#00FFFFFF</color>
+    <color name="gray">#FFC0C0C0</color>
+    <color name="gray_line">#FFC0C0C0</color>
+    <color name="gray_7272">#FF727272</color>
+    <color name="gray_shallow">#30C0C0C0</color>
+    <color name="lt_gray">#FFEEEEEE</color>
+    <color name="gray_e6">#FFE6E6E6</color>
+    <color name="light_gray">#77777777</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark_gray">#FF3D3D3D</color>
+    <color name="black">#FF000000</color>
+    <color name="red">#FFFF0000</color>
+    <color name="buy_red">#FFF54337</color>
+    <color name="buy_green">#FF12bc65</color>
+    <color name="permission_dialog_bg_red">#F86049</color>
+    <color name="dark_red">#FFF16257</color>
+    <color name="light_red">#FFFCBDB4</color>
+    <color name="shallow_red">#60FF0000</color>
+    <color name="shallow_blue">#FF0BA5FF</color>
+    <color name="screen_bg">#FFF6F5FA</color>
+    <color name="lt_blue">#2887EE</color>
+    <color name="gray_color">#90777777</color>
+    <color name="sky_blue">#FF00ADBA</color>
+    <color name="title_color">#FF3A3A3A</color>
+    <color name="title_color_one">#2d2d2d</color>
+    <color name="default_color">#000111</color>
+    <color name="title_blue">#ff0a113c</color>
+    <color name="dark_blue">#ff0f1c2a</color>
+    <color name="welcome_orange">#fffd6b13</color>
+    <!-- 二维码扫描 -->
+    <color name="possible_result_points">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#47000000</color>
+    <color name="backgroud">#ffffffff</color>
+    <color name="line_chart_backgroud">#00ffffff</color>
+    <color name="navy_blue">#ff00aac0</color>
+    <color name="griditems_bg">#ffe8ecef</color>
+    <color name="commo_text_color">#ff333333</color>
+    <color name="line">#ffd3dde6</color>
+
+    <color name="login_theme_red">#F86049</color><!--登录界面主体颜色-->
+    <color name="login_theme_gray">#F6F5FA</color><!--登录界面主体灰色背景-->
+    <color name="setting_back_color">#F5F4F9</color><!--设置界面北京颜色-->
+    <color name="orange">#F2B620</color>
+    <color name="click_login">#727272</color><!--点击登录文字颜色-->
+
+
+    <color name="common_white">#FFFFFF</color>
+    <color name="common_black">#000000</color>
+    <color name="common_bg">#eeeeee</color>
+    <color name="common_divider">#40000000</color>
+    <color name="common_transparent">#00000000</color>
+
+    <color name="bg_yellow">#FFE100</color>
+    <color name="home_tab_bg">#262733</color>
+    <color name="home_tab_text">#194B70</color>
+    <color name="home_page_bg">#1E1E26</color>
+    <color name="transparent_black">#40000000</color>
+    <color name="transparent_black2">#80000000</color>
+
+    <color name="mine_label_txt">#A7ADBC</color>
+    <color name="dialog_avatar_bg">#262127</color>
+
+    <color name="btn_black_pressed_bg">#2E2C31</color>
+    <color name="edit_text_underline">#2F3241</color>
+    <color name="info_item_subtitle">#5F5D6A</color>
+
+    <color name="info_tab_select">#194B70</color>
+    <!--辅助文字色，用于稍微弱些的文字表现。info_tab_unselect改名为text_grey_light-->
+    <color name="text_grey_light">#A7ADBC</color>
+
+    <color name="text_red">#FC0544</color>
+    <color name="text_green">#51FFB9</color>
+    <color name="text_grey">#5E5E6A</color>
+    <color name="text_blue">#118CDE</color>
+    <color name="text_orange">#FCAE05</color>
+
+    <color name="btn_blue">#118CDE</color>
+    <color name="btn_blue_pressed">#0070BB</color>
+    <color name="btn_grey_ripple">#545359</color>
+
+    <color name="label_etf_bg">#2C2C37</color>
+
+    <color name="ma5">#823E66</color>
+    <color name="ma10">#B99C7A</color>
+    <color name="ma20">#3C7193</color>
+    <color name="k_line_mark_bg">#1f101419</color>
+
+    <!-- 分时图 -->
+    <color name="minute_grayLine">#2D3945</color>
+    <color name="minute_blue">#00D0FC</color>
+    <color name="minute_yellow">#E7B448</color>
+    <color name="minute_black">#101419</color>
+    <color name="minute_jizhun">#7F9976</color>
+    <color name="minute_zhoutv">#858D93</color>
+    <color name="marker_bg">#1C232E</color>
+    <color name="marker_kline_flag">#ffb6b6b6</color>
+
+    <!-- 新手引导 -->
+
+    <color name="transparent0">#00000000</color>
+    <color name="shadow">#cc000000</color>
+    <color name="Red_800">#ffb93221</color>
+</resources>

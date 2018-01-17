@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <RadioGroup
+        android:id="@+id/rg_control_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <RadioButton
+            android:id="@+id/rb_trade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/radio_tab_trade"
+            android:gravity="center"
+            android:text="交易"
+            android:textColor="@drawable/main_tab_check"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/rb_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/radio_tab_order"
+            android:gravity="center"
+            android:text="持仓"
+            android:textColor="@drawable/main_tab_check"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/rb_invite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/radio_tab_invite"
+            android:gravity="center"
+            android:text="发现"
+            android:textColor="@drawable/main_tab_check"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/rb_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/radio_tab_my"
+            android:gravity="center"
+            android:text="我"
+            android:textColor="@drawable/main_tab_check"
+            android:textSize="12dp" />
+    </RadioGroup>
+
+    <com.koudai.operate.view.NoScrollViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rg_control_button"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/vp_main"
+        android:background="@color/gray_shallow" />
+
+    <ImageView
+        android:id="@+id/iv_guide_reg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/rg_control_button"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/icon_guide_reg"
+        android:visibility="gone" />
+</RelativeLayout>

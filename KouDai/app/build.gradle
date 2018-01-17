@@ -1,0 +1,99 @@
+apply plugin: 'com.android.application'
+
+def verName = '';
+android {
+    compileSdkVersion 24
+    buildToolsVersion '26.0.2'
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.koudai.operate"
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 8
+        versionName "1.1.5"
+    }
+
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'koudaioperate'
+            keyPassword 'koudai2016920'
+            storeFile file('/home/m/workspace/koudaiWorkspace/android/doc/jks/koudaioperate.jks')
+            storePassword 'koudai2016920'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+    }
+
+    productFlavors {
+        // TODO 在这里写渠道号
+        ceshi {}
+        vivo {}
+        jinli {}
+        lianxiang {}
+        oppo {}
+        anzhi {}
+        yingyongbao {}
+        xiaomi {}
+        wandoujia {}
+        huawei {}
+        s360 {}
+        baidu {}
+        weixin {}
+        caipiao {}
+        duanxinkdcp {}
+        huangchongkdcp {}
+        fuwuqi {}
+        zhangziyang {}
+        nanpingtong {}
+        kuaiya {}
+        luo {}
+        wangcai {}
+    }
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+    //修改生成的apk名字
+    /*applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def oldFile = output.outputFile
+            def newName = '';
+            if (variant.buildType.name.equals('release')) {
+                def releaseApkName = variant.productFlavors[0].name + '_koudai_1-1-5.apk'
+                output.outputFile = new File(oldFile.parent, releaseApkName)
+            }
+            if (variant.buildType.name.equals('beta')) {
+
+            }
+            if (variant.buildType.name.equals('debug')) {
+
+            }
+        }
+    }*/
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.1.1'
+    compile project(':PullToRefreshLibrary')
+    compile project(':alertview')
+    compile project(':pickerview')
+    compile project(':circleimageview')
+    compile files('libs/library_xutils2.6.14.jar')
+    compile files('libs/gson-2.3.1.jar')
+    compile files('libs/httpcore-4.2.4.jar')
+    compile files('libs/umeng-analytics-v5.6.1.jar')
+    compile 'io.reactivex:rxjava:1.1.9'
+    compile files('libs/jpush-android-2.1.9.jar')
+    compile project(':MPChartLib')
+    compile files('libs/mta-sdk-1.6.2.jar')
+    compile files('libs/open_sdk_r5756.jar')
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.koudai.operate.activity.UpdateNickNameActivity">
+
+    <com.koudai.operate.view.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_blue"
+        app:tbImage="@mipmap/ico_back_white"
+        app:tbText="修改昵称"
+        app:tbTextColor="@color/white" />
+
+    <EditText
+        android:id="@+id/et_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_regist_rect_stroke"
+        android:hint="请输入新的昵称"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textSize="13.0sp" />
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/btn_submit"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:background="@drawable/border_dark_blue_selector"
+        android:enabled="false"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="16.0sp" />
+</LinearLayout>

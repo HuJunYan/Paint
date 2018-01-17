@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitleBar">
+        <attr name="tbImage" format="reference" />
+        <attr name="tbText" format="string" />
+        <attr name="tbRightText" format="string" />
+        <attr name="tbLeftText" format="string" />
+        <attr name="tbTextColor" format="color"/>
+    </declare-styleable>
+    <declare-styleable name="NumberChooseView">
+        <attr name="ncvValue" format="integer" />
+        <attr name="ncvMinValue" format="integer" />
+        <attr name="ncvMaxValue" format="integer" />
+        <attr name="ncvRange" format="integer" />
+        <attr name="ncvSuffix" format="string" />
+    </declare-styleable>
+</resources>
