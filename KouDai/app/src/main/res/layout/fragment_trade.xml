@@ -177,14 +177,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="18">
+        android:layout_weight="18"
+        >
 
         <View
             android:id="@+id/view3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="3dp"
-            android:background="@color/gray_e6" />
+            android:background="@color/gray_e6"
+            />
 
         <RadioGroup
             android:id="@+id/rg_k_line"
@@ -192,7 +194,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/view3"
             android:background="@color/white"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <RadioButton
                 android:id="@+id/rb_real_time"
@@ -205,7 +208,8 @@
                 android:checked="true"
                 android:gravity="center"
                 android:text="分时"
-                android:textSize="11dp" />
+                android:textSize="11dp"
+                />
 
             <RadioButton
                 android:id="@+id/rb_5_min"
@@ -216,7 +220,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="5分"
-                android:textSize="11dp" />
+                android:textSize="11dp"
+                />
 
             <RadioButton
                 android:id="@+id/rb_15_min"
@@ -227,7 +232,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="15分"
-                android:textSize="11dp" />
+                android:textSize="11dp"
+                />
 
             <RadioButton
                 android:id="@+id/rb_30_min"
@@ -238,7 +244,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text=" 30分 "
-                android:textSize="11dp" />
+                android:textSize="11dp"
+                />
 
             <RadioButton
                 android:id="@+id/rb_60_min"
@@ -249,7 +256,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text=" 60分 "
-                android:textSize="11dp" />
+                android:textSize="11dp"
+                />
 
             <RadioButton
                 android:id="@+id/rb_day"
@@ -261,7 +269,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text=" 日线 "
-                android:textSize="11dp" />
+                android:textSize="11dp"
+                />
         </RadioGroup>
 
         <TextView
@@ -272,41 +281,47 @@
             android:gravity="center"
             android:text="加载中..."
             android:textSize="11sp"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            />
 
         <FrameLayout
             android:id="@+id/fl_k_line"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/rg_k_line">
+            android:layout_below="@id/rg_k_line"
+            >
 
             <com.koudai.operate.mychart.MyLineChart
                 android:id="@+id/line_chart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/rg_k_line"
-                android:visibility="gone" />
+                android:visibility="gone"
+                />
 
             <com.koudai.operate.mychart.MyKChart
                 android:id="@+id/k_chart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/rg_k_line"
-                android:visibility="gone" />
+                android:visibility="gone"
+                />
 
             <com.koudai.operate.mychart.MyKChart
                 android:id="@+id/k_day_chart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/rg_k_line"
-                android:visibility="gone" />
+                android:visibility="gone"
+                />
 
             <ProgressBar
                 android:id="@+id/pb_loading"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:visibility="gone" />
+                android:visibility="gone"
+                />
 
             <TextView
                 android:id="@+id/tv_failed"
@@ -314,17 +329,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="暂无数据"
-                android:visibility="gone" />
+                android:visibility="gone"
+                />
 
             <ImageView
                 android:id="@+id/iv_k_line_bg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@mipmap/k_line_bg"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:layout_marginBottom="10dp"
-                android:visibility="invisible"/>
+                android:background="@mipmap/k_line_bg"
+                android:visibility="invisible"
+                />
         </FrameLayout>
 
     </RelativeLayout>

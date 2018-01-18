@@ -41,7 +41,6 @@ import com.koudai.operate.R;
 import com.koudai.operate.activity.BuyActivity;
 import com.koudai.operate.activity.LoginActivity;
 import com.koudai.operate.activity.MainActivity;
-import com.koudai.operate.activity.OrderDetailsActivity;
 import com.koudai.operate.activity.WebViewActivity;
 import com.koudai.operate.base.BaseFragment;
 import com.koudai.operate.constant.Globparams;
@@ -88,6 +87,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -168,6 +170,9 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
     private TimeCount mTimeCount;
     private ProgressBar pb_loading;
     private TextView tv_failed;
+    private String mcurrentChose ;
+
+
 
     @Override
     protected void initVariable() {
@@ -542,21 +547,28 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
                 mCurrentKtype = 99;
                 mKLineTime = 30 * 1000;
                 showKView();
-                repeatPullKData();
+//                repeatPullKData();
+                dealfive();
+
                 break;
             case R.id.rb_5_min:
+                mcurrentChose = "5";
                 KLineDataUtil.getInstance().setNeedDrawByHandFirstTime(true);
                 mCurrentKtype = 2;
                 mKLineTime = 3 * 60 * 1000;
                 showKView();
-                repeatPullKData();
+//                repeatPullKData();
+                dealfive();
+
+
                 break;
             case R.id.rb_15_min:
                 KLineDataUtil.getInstance().setNeedDrawByHandFirstTime(true);
                 mCurrentKtype = 3;
                 mKLineTime = 8 * 60 * 1000;
                 showKView();
-                repeatPullKData();
+//                repeatPullKData();
+                dealfive();
                 break;
             case R.id.rb_30_min:
                 KLineDataUtil.getInstance().setNeedDrawByHandFirstTime(true);
@@ -582,6 +594,25 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
             default:
                 break;
         }
+    }
+
+    private void dealfive() {
+        if (mTimeCount != null) {
+            mTimeCount.finishTimeCount();
+            mTimeCount = null;
+        }
+        mTimeCount = new TimeCount(Long.MAX_VALUE, mKLineTime) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        readJson();
+                    }
+                });
+            }
+        };
+        mTimeCount.start();
     }
 
     class MyReceiver extends BroadcastReceiver {
@@ -951,33 +982,43 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
             mGetKLineData.getKLineData(jsonObject, false, new BaseNetCallBack<KLineListBean>() {
                 @Override
                 public void onSuccess(KLineListBean paramT) {
-                    pb_loading.setVisibility(View.GONE);
-                    int id = paramT.getResponse().getData().getData().getGoods_id();
-                    int type = paramT.getResponse().getData().getData().getType();
-                    String key = "k_" + id + "_" + type;
-                    if (type == 99) {
-                        formatRealTimeDataBean(paramT);
-                    } else if (type == 8) {
-                        formatDayKLineDataBean(paramT);
-                    } else {
-                        format15or60KLineDataBean(paramT);
-                    }
-                    kLineMap.put(key, paramT);
-                    if (id == mKLineId && type == mCurrentKtype) {
-                        showKView();
-                    }
+
+                    successDeal(paramT);
                 }
 
                 @Override
                 public void onFailure(String url, NetBase.ErrorType errorType, int errorCode) {
-                    pb_loading.setVisibility(View.GONE);
-                    if (kid == mKLineId && kType == mCurrentKtype && kLineMap.get("k_" + kid + "_" + kType) == null) {
-                        tv_failed.setVisibility(View.VISIBLE);
-                    }
+
+                    failureDeal(kid, kType);
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void failureDeal(int kid, int kType) {
+        pb_loading.setVisibility(View.GONE);
+        if (kid == mKLineId && kType == mCurrentKtype && kLineMap.get("k_" + kid + "_" + kType) == null) {
+            tv_failed.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void successDeal(KLineListBean paramT) {
+        pb_loading.setVisibility(View.GONE);
+        int id = paramT.getResponse().getData().getData().getGoods_id();
+        int type = paramT.getResponse().getData().getData().getType();
+        String key = "k_" + id + "_" + type;
+        if (type == 99) {
+            formatRealTimeDataBean(paramT);
+        } else if (type == 8) {
+            formatDayKLineDataBean(paramT);
+        } else {
+            format15or60KLineDataBean(paramT);
+        }
+        kLineMap.put(key, paramT);
+        if (id == mKLineId && type == mCurrentKtype) {
+            showKView();
         }
     }
 
@@ -1204,6 +1245,43 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
 
             guideView1.show();
             UserUtil.setIsGuideTicket(mContext, true);
+        }
+    }
+
+    public void readJson (){
+
+        final int kid = mKLineId;
+        final int kType = mCurrentKtype;
+        if (kLineMap.get("k_" + kid + "_" + kType) == null) {
+            pb_loading.setVisibility(View.VISIBLE);
+        }
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(getContext().getAssets().open("KLineListBeanJson.txt")));
+            StringBuffer sb = new StringBuffer();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+
+            LogUtil.i("ret","5="+sb.toString());
+            if (mCurrentKtype==3){
+                KLineListBean bean = GsonUtil.json2bean(com.koudai.operate.data.LineData.getLine15(), KLineListBean.class);
+                successDeal(bean);
+            }else  if (mCurrentKtype ==99){
+                KLineListBean bean = GsonUtil.json2bean(com.koudai.operate.data.LineData.getHm(), KLineListBean.class);
+                successDeal(bean);
+            }
+
+            else {
+                KLineListBean bean = GsonUtil.json2bean(sb.toString(), KLineListBean.class);
+                successDeal(bean);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

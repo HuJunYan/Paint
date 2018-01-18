@@ -17,8 +17,10 @@ import java.util.List;
 public class KLineListBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private int ret;
+    private int benchmark;
     private Response response;
     public boolean isFormat = false;
+
 
     public class Response {
         private String message;
