@@ -1249,32 +1249,35 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
     }
 
     public void readJson (){
-
+        try {
         final int kid = mKLineId;
         final int kType = mCurrentKtype;
         if (kLineMap.get("k_" + kid + "_" + kType) == null) {
             pb_loading.setVisibility(View.VISIBLE);
         }
-
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(getContext().getAssets().open("KLineListBeanJson.txt")));
-            StringBuffer sb = new StringBuffer();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            br.close();
-
-            LogUtil.i("ret","5="+sb.toString());
             if (mCurrentKtype==3){
                 KLineListBean bean = GsonUtil.json2bean(com.koudai.operate.data.LineData.getLine15(), KLineListBean.class);
                 successDeal(bean);
             }else  if (mCurrentKtype ==99){
-                KLineListBean bean = GsonUtil.json2bean(com.koudai.operate.data.LineData.getHm(), KLineListBean.class);
+                BufferedReader br = new BufferedReader(new InputStreamReader(getContext().getAssets().open("KLineHmBean.txt")));
+                StringBuffer sb = new StringBuffer();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+                br.close();
+                KLineListBean bean = GsonUtil.json2bean(sb.toString(), KLineListBean.class);
                 successDeal(bean);
             }
 
             else {
+                BufferedReader br = new BufferedReader(new InputStreamReader(getContext().getAssets().open("KLineListBeanJson.txt")));
+                StringBuffer sb = new StringBuffer();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+                br.close();
                 KLineListBean bean = GsonUtil.json2bean(sb.toString(), KLineListBean.class);
                 successDeal(bean);
             }
