@@ -8,7 +8,9 @@ import com.github.mikephil.charting.data.CandleEntry;
 import com.koudai.operate.utils.KLineDataUtil;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,22 +76,23 @@ public class KLineListBean implements Serializable {
 
         public SparseArray<String> getTimeList() {
             SparseArray<String> timeList = new SparseArray<String>();
-
+            SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
             if (list.size() < 10) {
                 return timeList;
             }
-            timeList.put(0, list.get(0).getTime());
+            timeList.put(0,format.format(new Date(Long.parseLong(list.get(0).getTime(), 10))) );
             int len = list.size();
             int space = len / 5;
             int count = space;
             int lastIndex = 0;
             String stepTime = list.get(space).getTime();
             if (stepTime.endsWith("1") || stepTime.endsWith("2") || stepTime.endsWith("3")
-                    || stepTime.endsWith("4")) {
+                    || stepTime.endsWith("4")|| stepTime.endsWith("6")) {
                 for (int i = 1; i < 5; i++) {
                     for (int j = space * i; j > 5; j--) {
-                        if (list.get(j).getTime().endsWith("0")) {
-                            timeList.put(j, list.get(j).getTime());
+                        if (list.get(j).getTime().endsWith("6")) {
+                            Date date = new Date(Long.parseLong(list.get(j).getTime(), 10));
+                            timeList.put(j, format.format(date));
                             lastIndex = j;
                             break;
                         } else {
@@ -111,7 +114,7 @@ public class KLineListBean implements Serializable {
                 }
             }
             if (lastIndex != 0 && (list.size() - lastIndex > space / 2)) {
-                timeList.put(list.size() - 1, list.get(list.size() - 1).getTime());
+                timeList.put(list.size() - 1,format.format(new Date(Long.parseLong(list.get(list.size() - 1).getTime(), 10))) );
             }
 
 //            timeList.put(0, "09:30");
