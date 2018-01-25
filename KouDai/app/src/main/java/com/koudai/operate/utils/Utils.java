@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.widget.Button;
 
 import java.io.BufferedOutputStream;
@@ -463,6 +462,12 @@ public class Utils {
         if (mediaStorageDir != null && mediaStorageDir.exists()) {
             mediaStorageDir.delete();
         }
+        double a = Math.pow(2,4);
     }
+
+    //16G 32G 64G 128G 256G
+
+
+
 
 }

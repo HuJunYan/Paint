@@ -154,9 +154,10 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
     private int colorLine;
     private int colorText;
     // min-line
+//    private MyBarChart barChart;
     private MyLineChart lineChart;
     private Subscription subscriptionMinute;
-    private LineDataSet d1;
+    private LineDataSet d1,d2;
     MyXAxis xAxisLine;
     //    MyYAxis axisRightLine;
     MyYAxis axisLeftLine;
@@ -736,6 +737,7 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
     // 分时图
 
     private void initMinChart() {
+
         lineChart.setNoDataText("");
         lineChart.setScaleEnabled(false);
         lineChart.setDrawBorders(false);
@@ -745,6 +747,7 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
         lineChart.setMinOffset(1f);
         Legend lineChartLegend = lineChart.getLegend();
         lineChartLegend.setEnabled(false);
+
 
 
         //x轴
@@ -911,6 +914,7 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
         ll.setLineWidth(1f);
 
         ArrayList<Entry> lineCJEntries = new ArrayList<>();
+        ArrayList<Entry> lineAVEntries = new ArrayList<>();
         for (int i = 0, j = 0; i < kList.size(); i++, j++) {
            /* //避免数据重复，skip也能正常显示
             if (mData.getDatas().get(i).time.equals("13:30")) {
@@ -920,6 +924,7 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
 
             if (t == null) {
                 lineCJEntries.add(new Entry(Float.NaN, i));
+                lineAVEntries.add(new Entry(Float.NaN,i));
                 continue;
             }
             if (!TextUtils.isEmpty(stringSparseArray.get(i)) &&
@@ -927,24 +932,34 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
                 i++;
             }
             String Now = kList.get(i).getNow();
+            String Avg = kList.get(i).getAvge();
             if (Now == null || "".equals(Now)) {
                 Now = "0";
             }
             lineCJEntries.add(new Entry(Float.parseFloat(Now), i));
+            lineAVEntries.add(new Entry(Float.parseFloat(Avg),i));
         }
         d1 = new LineDataSet(lineCJEntries, "成交价");
+        d2 = new LineDataSet(lineAVEntries, "均价");
         d1.setDrawValues(false);
+        d2.setDrawValues(false);
 
         d1.setCircleRadius(0);
+        d2.setCircleRadius(0);
         d1.setColor(getResources().getColor(R.color.minute_blue));
+        d2.setColor(getResources().getColor(R.color.minute_yellow));
         d1.setHighLightColor(Color.DKGRAY);
-//        d1.setHighLightColor(Color.WHITE);
+        d2.setHighlightEnabled(false);
         d1.setDrawFilled(true);
 
         //谁为基准
         d1.setAxisDependency(YAxis.AxisDependency.LEFT);
+//        d2.setAxisDependency(YAxis.AxisDependency.LEFT);
         ArrayList<ILineDataSet> sets = new ArrayList<>();
+
+
         sets.add(d1);
+        sets.add(d2);
         /*注老版本LineData参数可以为空，最新版本会报错，修改进入ChartData加入if判断*/
         LineData cd = new LineData(kLineListBean_realTime.getResponse().getData().getTimeStrList(), sets);
         lineChart.setData(cd);
@@ -1259,7 +1274,7 @@ public class TradeFragment extends BaseFragment implements View.OnClickListener,
                 KLineListBean bean = GsonUtil.json2bean(com.koudai.operate.data.LineData.getLine15(), KLineListBean.class);
                 successDeal(bean);
             }else  if (mCurrentKtype ==99){
-                BufferedReader br = new BufferedReader(new InputStreamReader(getContext().getAssets().open("KLineHmBean.txt")));
+                BufferedReader br = new BufferedReader(new InputStreamReader(getContext().getAssets().open("KLineAvBean.txt")));
                 StringBuffer sb = new StringBuffer();
                 String line;
                 while ((line = br.readLine()) != null) {

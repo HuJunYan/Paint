@@ -17,6 +17,7 @@ public class KLineItemBean implements Serializable {
     private String now = "0";
     private String ma10 = "0";
     private String ma20 = "0";
+    private String avge = "0";
 
     public String getTime() {
         return time;
@@ -44,6 +45,14 @@ public class KLineItemBean implements Serializable {
 
     public String getLow() {
         return low;
+    }
+
+    public String getAvge() {
+        return avge;
+    }
+
+    public void setAvge(String avge) {
+        this.avge = avge;
     }
 
     public void setLow(String low) {
